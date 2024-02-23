@@ -1,10 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using ZadarAPI.Contracts;
 using ZadarAPI.Dto.Kvart;
 using ZadarAPI.Models;
 
@@ -14,53 +11,61 @@ namespace ZadarAPI.Controllers
     [ApiController]
     public class KvartsController : ControllerBase
     {
-        private readonly ZadarContext _context;
+        private readonly IKvartRepository _kvartRepository;
+        private readonly IMapper _mapper;
 
-        public KvartsController(ZadarContext context)
+        public KvartsController(IKvartRepository kvartRepository, IMapper mapper)
         {
-            _context = context;
+            _kvartRepository = kvartRepository;
+            _mapper = mapper;
         }
-
-        // GET: api/Kvarts
+        
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Kvart>>> GetKvarts()
+        public async Task<ActionResult<IEnumerable<GetKvartDto>>> GetKvarts()
         {
-            return await _context.Kvarts.ToListAsync();
+            var kvarts = await _kvartRepository.GetAllAsync();
+            var returningKvarts = _mapper.Map<List<GetKvartDto>>(kvarts);
+            
+            return returningKvarts;
         }
 
-        // GET: api/Kvarts/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Kvart>> GetKvart(int id)
+        public async Task<ActionResult<KvartDto>> GetKvart(int id)
         {
-            var kvart = await _context.Kvarts.FindAsync(id);
+            var kvart = await _kvartRepository.GetAsync(id);
+            if (kvart == null)
+            {
+                return NotFound();
+            }
+            
+            var returningKvart = _mapper.Map<KvartDto>(kvart);
+            
+            return returningKvart;
+        }
+        
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutKvart(int id, UpdateKvartDto updateKvartDto)
+        {
+            if (id != updateKvartDto.Id)
+            {
+                return BadRequest();
+            }
 
+            var kvart = await _kvartRepository.GetAsync(id);
             if (kvart == null)
             {
                 return NotFound();
             }
 
-            return kvart;
-        }
-
-        // PUT: api/Kvarts/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutKvart(int id, Kvart kvart)
-        {
-            if (id != kvart.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(kvart).State = EntityState.Modified;
+            _mapper.Map(updateKvartDto, kvart);
 
             try
             {
-                await _context.SaveChangesAsync();
+                await _kvartRepository.UpdateAsync(kvart);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!KvartExists(id))
+                if (!await KvartExists(id))
                 {
                     return NotFound();
                 }
@@ -72,42 +77,33 @@ namespace ZadarAPI.Controllers
 
             return NoContent();
         }
-
-        // POST: api/Kvarts
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        
         [HttpPost]
         public async Task<ActionResult<Kvart>> PostKvart(CreateKvartDto createKvartDto)
         {
-            Kvart kvart = new Kvart()
-            {
-                LifeQuality = createKvartDto.LifeQuality,
-                Name = createKvartDto.Name,
-            };
-            _context.Kvarts.Add(kvart);
-            await _context.SaveChangesAsync();
+            Kvart kvart = _mapper.Map<Kvart>(createKvartDto);
+            _kvartRepository.AddAsync(kvart);
 
             return CreatedAtAction("GetKvart", new { id = kvart.Id }, kvart);
         }
-
-        // DELETE: api/Kvarts/5
+        
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteKvart(int id)
         {
-            var kvart = await _context.Kvarts.FindAsync(id);
+            var kvart = await _kvartRepository.GetAsync(id);
             if (kvart == null)
             {
                 return NotFound();
             }
 
-            _context.Kvarts.Remove(kvart);
-            await _context.SaveChangesAsync();
+            _kvartRepository.DeleteAsync(id);
 
             return NoContent();
         }
 
-        private bool KvartExists(int id)
+        private async Task<bool> KvartExists(int id)
         {
-            return _context.Kvarts.Any(e => e.Id == id);
+            return await _kvartRepository.Exists(id);
         }
     }
 }

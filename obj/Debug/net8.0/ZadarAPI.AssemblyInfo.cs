@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ZadarAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ec83e83775722f78bacdb0588a1e58edf1d119a4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+78eecdf6bb35a29f339fc6cd760b290904ed7bb1")]
 [assembly: System.Reflection.AssemblyProductAttribute("ZadarAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ZadarAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
