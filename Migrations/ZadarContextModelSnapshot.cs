@@ -39,7 +39,7 @@ namespace ZadarAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Kvarts");
+                    b.ToTable("Kvarts", (string)null);
                 });
 
             modelBuilder.Entity("ZadarAPI.Models.Street", b =>
@@ -67,7 +67,7 @@ namespace ZadarAPI.Migrations
 
                     b.HasIndex("KvartId");
 
-                    b.ToTable("Streets");
+                    b.ToTable("Streets", (string)null);
                 });
 
             modelBuilder.Entity("ZadarAPI.Models.Street", b =>

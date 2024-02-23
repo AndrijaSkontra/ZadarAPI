@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using ZadarAPI.Dto.Kvart;
 using ZadarAPI.Models;
 
 namespace ZadarAPI.Controllers
@@ -75,8 +76,13 @@ namespace ZadarAPI.Controllers
         // POST: api/Kvarts
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Kvart>> PostKvart(Kvart kvart)
+        public async Task<ActionResult<Kvart>> PostKvart(CreateKvartDto createKvartDto)
         {
+            Kvart kvart = new Kvart()
+            {
+                LifeQuality = createKvartDto.LifeQuality,
+                Name = createKvartDto.Name,
+            };
             _context.Kvarts.Add(kvart);
             await _context.SaveChangesAsync();
 

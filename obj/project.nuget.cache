@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "bP6JYo89ElfQO86It11Iw25TymQrhmBiPH3fH7fRmof/OEZcwAJbDXBh14nguZUjm1aG/M2o5ENRwJSXuPxLlw==",
+  "dgSpecHash": "0Rci8dXvJSWt0ZQyYordWTwt3tJwT+L6K/9p+yR937tdMIzSELmFc2Buvs5fbLvcHYXUNswFRFTL3MVmkyPYDg==",
   "success": true,
-  "projectFilePath": "/home/shkoki/dev/net_sharp/ZadarAPI/ZadarAPI.csproj",
+  "projectFilePath": "/home/shkoki/dev/net_api/ZadarAPI/ZadarAPI.csproj",
   "expectedPackageFiles": [
     "/home/shkoki/.nuget/packages/azure.core/1.35.0/azure.core.1.35.0.nupkg.sha512",
     "/home/shkoki/.nuget/packages/azure.identity/1.10.3/azure.identity.1.10.3.nupkg.sha512",

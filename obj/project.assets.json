@@ -8303,11 +8303,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/shkoki/dev/net_sharp/ZadarAPI/ZadarAPI.csproj",
+      "projectUniqueName": "/home/shkoki/dev/net_api/ZadarAPI/ZadarAPI.csproj",
       "projectName": "ZadarAPI",
-      "projectPath": "/home/shkoki/dev/net_sharp/ZadarAPI/ZadarAPI.csproj",
+      "projectPath": "/home/shkoki/dev/net_api/ZadarAPI/ZadarAPI.csproj",
       "packagesPath": "/home/shkoki/.nuget/packages/",
-      "outputPath": "/home/shkoki/dev/net_sharp/ZadarAPI/obj/",
+      "outputPath": "/home/shkoki/dev/net_api/ZadarAPI/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/shkoki/.nuget/NuGet/NuGet.Config"
