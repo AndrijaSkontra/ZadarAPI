@@ -2,9 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using ZadarAPI.Contracts;
+using ZadarAPI.Dto.Street;
 using ZadarAPI.Models;
 
 namespace ZadarAPI.Controllers
@@ -13,53 +16,64 @@ namespace ZadarAPI.Controllers
     [ApiController]
     public class StreetController : ControllerBase
     {
-        private readonly ZadarContext _context;
+        private readonly IStreetRepository _streetRepository;
+        private readonly IMapper _mapper;
 
-        public StreetController(ZadarContext context)
+        public StreetController(IStreetRepository streetRepository, IMapper mapper)
         {
-            _context = context;
+            _streetRepository = streetRepository;
+            _mapper = mapper;
         }
 
         // GET: api/Street
+
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Street>>> GetStreets()
+        public async Task<ActionResult<IEnumerable<GetStreetDto>>> GetStreets()
         {
-            return await _context.Streets.ToListAsync();
+            var streets =  await _streetRepository.GetAllAsync();
+            return _mapper.Map<List<GetStreetDto>>(streets);
         }
 
         // GET: api/Street/5
+
         [HttpGet("{id}")]
-        public async Task<ActionResult<Street>> GetStreet(int id)
+        public async Task<ActionResult<StreetDto>> GetStreet(int id)
         {
-            var street = await _context.Streets.FindAsync(id);
+            var street = await _streetRepository.GetAsync(id);
 
             if (street == null)
             {
                 return NotFound();
             }
 
-            return street;
+            return _mapper.Map<StreetDto>(street);
         }
 
         // PUT: api/Street/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutStreet(int id, Street street)
+        public async Task<IActionResult> PutStreet(int id, UpdateStreetDto updateStreetDto)
         {
-            if (id != street.Id)
+            if (id != updateStreetDto.Id)
             {
                 return BadRequest();
             }
+            
+            var street = await _streetRepository.GetAsync(id);
+            if (street == null)
+            {
+                return NotFound();
+            }
 
-            _context.Entry(street).State = EntityState.Modified;
-
+            _mapper.Map(updateStreetDto, street);
+            
             try
             {
-                await _context.SaveChangesAsync();
+                await _streetRepository.UpdateAsync(street);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!StreetExists(id))
+                if (!await StreetExists(id))
                 {
                     return NotFound();
                 }
@@ -75,10 +89,10 @@ namespace ZadarAPI.Controllers
         // POST: api/Street
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Street>> PostStreet(Street street)
+        public async Task<ActionResult<Street>> PostStreet(CreateStreetDto createStreetDto)
         {
-            _context.Streets.Add(street);
-            await _context.SaveChangesAsync();
+            var street = _mapper.Map<Street>(createStreetDto);
+            await _streetRepository.AddAsync(street);
 
             return CreatedAtAction("GetStreet", new { id = street.Id }, street);
         }
@@ -87,21 +101,20 @@ namespace ZadarAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteStreet(int id)
         {
-            var street = await _context.Streets.FindAsync(id);
+            var street = await _streetRepository.GetAsync(id);
             if (street == null)
             {
                 return NotFound();
             }
 
-            _context.Streets.Remove(street);
-            await _context.SaveChangesAsync();
+            await _streetRepository.DeleteAsync(id);
 
             return NoContent();
         }
 
-        private bool StreetExists(int id)
+        private async Task<bool> StreetExists(int id)
         {
-            return _context.Streets.Any(e => e.Id == id);
+            return await _streetRepository.Exists(id);
         }
     }
 }

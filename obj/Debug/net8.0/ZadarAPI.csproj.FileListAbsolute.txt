@@ -518,3 +518,17 @@
 /home/shkoki/dev/net_api/ZadarAPI/bin/Debug/net8.0/Serilog.Sinks.File.dll
 /home/shkoki/dev/net_api/ZadarAPI/bin/Debug/net8.0/Serilog.Sinks.PeriodicBatching.dll
 /home/shkoki/dev/net_api/ZadarAPI/bin/Debug/net8.0/Serilog.Sinks.Seq.dll
+/home/shkoki/dev/net_sharp/ZadarAPI/bin/Debug/net8.0/AutoMapper.dll
+/home/shkoki/dev/net_sharp/ZadarAPI/bin/Debug/net8.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+/home/shkoki/dev/net_sharp/ZadarAPI/bin/Debug/net8.0/Serilog.dll
+/home/shkoki/dev/net_sharp/ZadarAPI/bin/Debug/net8.0/Serilog.AspNetCore.dll
+/home/shkoki/dev/net_sharp/ZadarAPI/bin/Debug/net8.0/Serilog.Expressions.dll
+/home/shkoki/dev/net_sharp/ZadarAPI/bin/Debug/net8.0/Serilog.Extensions.Hosting.dll
+/home/shkoki/dev/net_sharp/ZadarAPI/bin/Debug/net8.0/Serilog.Extensions.Logging.dll
+/home/shkoki/dev/net_sharp/ZadarAPI/bin/Debug/net8.0/Serilog.Formatting.Compact.dll
+/home/shkoki/dev/net_sharp/ZadarAPI/bin/Debug/net8.0/Serilog.Settings.Configuration.dll
+/home/shkoki/dev/net_sharp/ZadarAPI/bin/Debug/net8.0/Serilog.Sinks.Console.dll
+/home/shkoki/dev/net_sharp/ZadarAPI/bin/Debug/net8.0/Serilog.Sinks.Debug.dll
+/home/shkoki/dev/net_sharp/ZadarAPI/bin/Debug/net8.0/Serilog.Sinks.File.dll
+/home/shkoki/dev/net_sharp/ZadarAPI/bin/Debug/net8.0/Serilog.Sinks.PeriodicBatching.dll
+/home/shkoki/dev/net_sharp/ZadarAPI/bin/Debug/net8.0/Serilog.Sinks.Seq.dll
