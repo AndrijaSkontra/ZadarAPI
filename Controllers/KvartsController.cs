@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ZadarAPI.Contracts;
@@ -78,7 +79,7 @@ namespace ZadarAPI.Controllers
             return NoContent();
         }
         
-        [HttpPost]
+        [HttpPost, Authorize]
         public async Task<ActionResult<Kvart>> PostKvart(CreateKvartDto createKvartDto)
         {
             Kvart kvart = _mapper.Map<Kvart>(createKvartDto);

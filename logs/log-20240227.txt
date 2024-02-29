@@ -1,0 +1,6 @@
+2024-02-27 10:02:26.360 +01:00 [WRN] No XML encryptor configured. Key {5f5c879a-e443-457b-8d1d-c77f2ca74a4e} may be persisted to storage in unencrypted form.
+2024-02-27 10:02:26.639 +01:00 [INF] Now listening on: http://localhost:5123
+2024-02-27 10:02:26.642 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-02-27 10:02:26.643 +01:00 [INF] Hosting environment: Development
+2024-02-27 10:02:26.643 +01:00 [INF] Content root path: /home/shkoki/dev/net_sharp/ZadarAPI
+2024-02-27 10:22:39.487 +01:00 [INF] Application is shutting down...

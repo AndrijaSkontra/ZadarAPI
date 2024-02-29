@@ -4,5 +4,5 @@ namespace ZadarAPI.Models;
 
 public class Resident : IdentityUser
 {
-    public string CityNickname { get; set; }
+    public string? CityNickname { get; set; }
 }
