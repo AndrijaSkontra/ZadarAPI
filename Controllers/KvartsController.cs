@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ZadarAPI.Contracts;
@@ -20,7 +21,7 @@ namespace ZadarAPI.Controllers
             _mapper = mapper;
         }
         
-        [HttpGet]
+        [HttpGet, Authorize(Roles = "Admin")]
         public async Task<ActionResult<IEnumerable<GetKvartDto>>> GetKvarts()
         {
             var kvarts = await _kvartRepository.GetAllAsync();

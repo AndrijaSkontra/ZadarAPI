@@ -1,0 +1,10 @@
+2024-03-01 16:37:23.600 +01:00 [INF] Now listening on: http://localhost:5123
+2024-03-01 16:37:23.703 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-03-01 16:37:23.704 +01:00 [INF] Hosting environment: Development
+2024-03-01 16:37:23.704 +01:00 [INF] Content root path: /home/shkoki/dev/net_sharp/ZadarAPI
+2024-03-01 16:38:22.907 +01:00 [INF] Application is shutting down...
+2024-03-01 16:38:32.109 +01:00 [INF] Now listening on: http://localhost:5123
+2024-03-01 16:38:32.175 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-03-01 16:38:32.176 +01:00 [INF] Hosting environment: Development
+2024-03-01 16:38:32.176 +01:00 [INF] Content root path: /home/shkoki/dev/net_sharp/ZadarAPI
+2024-03-01 16:42:13.360 +01:00 [INF] Application is shutting down...
